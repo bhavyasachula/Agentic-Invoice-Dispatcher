@@ -51,6 +51,60 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
+#######################################################################
+st.markdown("""
+<style>
+button[kind="secondary"][data-testid="baseButton-send_btn"] {
+    background-color: #28a745;
+    color: white;
+}
+
+button[kind="secondary"][data-testid="baseButton-regen_btn"] {
+    background-color: #007bff;
+    color: white;
+}
+
+button[kind="secondary"][data-testid="baseButton-cancel_btn"] {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+</style>
+""", unsafe_allow_html=True)
+
+#######################################################################
+st.markdown("""
+<style>
+/* Send Email (first button) */
+div.stButton:nth-of-type(1) button {
+    background-color: #28a745;
+    color: white;
+    border-radius: 8px;
+}
+
+/* Re-generate (second button) */
+div.stButton:nth-of-type(2) button {
+    background-color: #007bff;
+    color: white;
+    border-radius: 8px;
+}
+
+/* Cancel (third button) */
+div.stButton:nth-of-type(3) button {
+    background-color: #ff6b6b;
+    color: white;
+    border-radius: 8px;
+}
+
+/* Hover effects */
+div.stButton button:hover {
+    opacity: 0.85;
+}
+</style>
+""", unsafe_allow_html=True)
 
 # ─── Sidebar — settings ──────────────────────────────────
 with st.sidebar:
@@ -63,8 +117,8 @@ with st.sidebar:
 
     config.SMTP_EMAIL = st.text_input("Your Email", value=config.SMTP_EMAIL)
     config.SMTP_PASSWORD = st.text_input("App Password", type="password", value=config.SMTP_PASSWORD)
-    config.SMTP_HOST = st.text_input("SMTP Host", value=config.SMTP_HOST)
-    config.SMTP_PORT = int(st.text_input("SMTP Port", value=str(config.SMTP_PORT)))
+    # config.SMTP_HOST = st.text_input("SMTP Host", value=config.SMTP_HOST)
+    # config.SMTP_PORT = int(st.text_input("SMTP Port", value=str(config.SMTP_PORT)))
 
     st.markdown("---")
     st.subheader("Sender Details")
@@ -147,8 +201,8 @@ elif st.session_state["step"] == "review":
     st.write("")
 
     # Show extracted data
-    with st.expander("Extracted Invoice Data", expanded=False):
-        st.json(data)
+    # with st.expander("Extracted Invoice Data", expanded=False):
+    #     st.json(data)
 
     st.markdown(f"**To:** {st.session_state.get('customer_email', '')}")
     st.markdown(f"**Attachment:** {st.session_state.get('file_name', '')}")
@@ -170,12 +224,12 @@ elif st.session_state["step"] == "review":
     col1, col2, col3 = st.columns([1, 1, 1])
 
     with col1:
-        if st.button("✅ Send Email", type="primary", use_container_width=True):
+        if st.button("Send Email", key="sendbtn",  use_container_width=True):
             st.session_state["step"] = "sending"
             st.rerun()
 
     with col2:
-        if st.button("🔄 Re-generate", use_container_width=True):
+        if st.button("Re-generate",key="regen_btn", use_container_width=True):
             # Re-run agent
             images_b64 = file_to_images_b64(
                 st.session_state["file_bytes"],
@@ -190,7 +244,7 @@ elif st.session_state["step"] == "review":
             st.rerun()
 
     with col3:
-        if st.button("❌ Cancel", use_container_width=True):
+        if st.button("Cancel", key="cancel_btn",use_container_width=True):
             for key in ["agent_result", "subject", "body", "file_bytes", "file_name", "customer_email"]:
                 st.session_state[key] = None
             st.session_state["step"] = "upload"
