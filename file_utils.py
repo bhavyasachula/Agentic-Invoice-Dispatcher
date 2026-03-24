@@ -17,17 +17,20 @@ import os
 
 import numpy as np
 import pytesseract
-import cv2
+
 def image_to_text(img_bytes: bytes) -> str:
-    
-    pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
-    nparr = np.frombuffer(img_bytes, np.uint8)
-    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+    # Only set path for Windows (local)
+    if os.name == "nt":
+        pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    gray = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY)[1]
+    # Convert bytes → PIL Image
+    image = Image.open(io.BytesIO(img_bytes)).convert("L")  # grayscale
 
-    text = pytesseract.image_to_string(gray)
+    # Simple threshold (similar to cv2)
+    image = image.point(lambda x: 0 if x < 150 else 255, '1')
+
+    # OCR
+    text = pytesseract.image_to_string(image)
 
     return text
 
