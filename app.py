@@ -26,11 +26,16 @@ st.set_page_config(
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
-    html, body, [class*="css"] { font-family: 'Inter', sans-serif; }
+    
+    html, body, [class*="css"] {
+        font-family: 'Inter', sans-serif;
+    }
+
     .block-container { max-width: 720px; }
+
     .step-label {
         display: inline-block;
-        background: #4f46e5;
+        background: #2563eb;
         color: white;
         border-radius: 50%;
         width: 28px; height: 28px;
@@ -58,7 +63,11 @@ with st.sidebar:
     config.SMTP_PORT = int(st.text_input("SMTP Port", value=str(config.SMTP_PORT)))
 
     st.markdown("---")
+    st.subheader("Sender Details")
     config.COMPANY_NAME = st.text_input("Company Name", value=config.COMPANY_NAME)
+    config.SENDER_NAME = st.text_input("Your Name", value=config.SENDER_NAME)
+    config.SENDER_PHONE = st.text_input("Phone Number", value=config.SENDER_PHONE)
+    config.SENDER_EMAIL = st.text_input("Sender Email (for sign-off)", value=config.SENDER_EMAIL or config.SMTP_EMAIL)
 
 # ─── Title ────────────────────────────────────────────────
 st.title("📨 Invoice Dispatcher")

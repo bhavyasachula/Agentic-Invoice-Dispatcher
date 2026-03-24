@@ -89,14 +89,23 @@ def draft_email(state: GraphState) -> Dict[str, Any]:
         else:
             items_str += f"  - {item}\n"
 
+    # Resolve sender details: config (sidebar) takes priority, then OCR-extracted, then fallback
+    sender_name = config.SENDER_NAME or data.get("sender_company", "") or "Billing Department"
+    sender_phone = config.SENDER_PHONE or data.get("sender_phone", "") or ""
+    sender_email = config.SENDER_EMAIL or config.SMTP_EMAIL or data.get("sender_email", "") or ""
+    company_name = config.COMPANY_NAME or data.get("sender_company", "") or "Our Company"
+
     prompt = EMAIL_DRAFT_PROMPT.format(
-        company_name=config.COMPANY_NAME,
+        company_name=company_name,
         invoice_id=data.get("invoice_id", "N/A"),
         client_name=data.get("client_name", "Customer"),
         total_amount=data.get("total_amount", "N/A"),
         due_date=data.get("due_date", "N/A"),
         line_items=items_str.strip(),
         notes=data.get("notes", ""),
+        sender_name=sender_name,
+        sender_phone=sender_phone if sender_phone else "N/A",
+        sender_email=sender_email if sender_email else "N/A",
     )
 
     try:

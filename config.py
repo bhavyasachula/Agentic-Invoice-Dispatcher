@@ -19,5 +19,8 @@ SMTP_PORT: int = int(os.getenv("SMTP_PORT", "587"))
 SMTP_EMAIL: str = os.getenv("SMTP_EMAIL", "")
 SMTP_PASSWORD: str = os.getenv("SMTP_PASSWORD", "")
 
-# Company
-COMPANY_NAME: str = ""
+# Company / Sender details
+COMPANY_NAME: str = os.getenv("COMPANY_NAME", "")
+SENDER_NAME: str = os.getenv("SENDER_NAME", "")
+SENDER_PHONE: str = os.getenv("SENDER_PHONE", "")
+SENDER_EMAIL: str = os.getenv("SENDER_EMAIL", "")
