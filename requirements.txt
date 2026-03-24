@@ -9,3 +9,4 @@ PyMuPDF
 Pillow
 opencv-python
 langchain-groq
+groq
