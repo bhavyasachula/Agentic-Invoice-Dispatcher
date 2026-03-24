@@ -28,8 +28,7 @@ class GraphState(TypedDict, total=False):
 def _get_llm():
     return ChatGroq(
         model="openai/gpt-oss-120b",
-        temperature=config.TEMPERATURE,
-        api_key=st.secrets[OPENAI_API_KEY],
+        temperature=config.TEMPERATURE
     )
 
 
