@@ -10,3 +10,4 @@ Pillow
 opencv-python
 langchain-groq
 groq
+pytesseract
