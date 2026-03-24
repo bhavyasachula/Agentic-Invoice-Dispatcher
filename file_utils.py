@@ -14,7 +14,7 @@ import fitz  # PyMuPDF
 from PIL import Image
 
 import os
-import cv2
+
 import numpy as np
 
 def image_to_text(img_bytes: bytes) -> str:
