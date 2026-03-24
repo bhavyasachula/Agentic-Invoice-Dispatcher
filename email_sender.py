@@ -24,7 +24,7 @@ def send_email(
     Returns "ok" on success or an error message on failure.
     """
     if not config.SMTP_EMAIL or not config.SMTP_PASSWORD:
-        return "SMTP credentials not configured. Add them in the sidebar or .env file."
+        return "SMTP credentials not configured. Add them in the .env file."
 
     msg = MIMEMultipart()
     msg["From"] = config.SMTP_EMAIL

@@ -50,7 +50,8 @@ with st.sidebar:
     
 
     st.markdown("---")
-    st.subheader("SMTP (Email)")
+    st.subheader("SMTP (Email)") 
+
     config.SMTP_EMAIL = st.text_input("Your Email", value=config.SMTP_EMAIL)
     config.SMTP_PASSWORD = st.text_input("App Password", type="password", value=config.SMTP_PASSWORD)
     config.SMTP_HOST = st.text_input("SMTP Host", value=config.SMTP_HOST)
@@ -107,7 +108,7 @@ if st.session_state["step"] == "upload":
                 st.write("Converting file to images...")
                 images_b64 = file_to_images_b64(file_bytes, file_name)
 
-                st.write(f"Extracted {len(images_b64)} page(s). Sending to GPT-4o vision...")
+                st.write(f"Extracted {len(images_b64)} page(s). Sending...")
                 result = run_agent(images_b64)
 
                 if result.get("error"):

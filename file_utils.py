@@ -1,7 +1,4 @@
-# """
-# Utility to convert uploaded files (PDF or images) into base64-encoded images
-# that GPT-4o vision can process.
-# """
+
 import pytesseract
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 import base64
@@ -21,7 +18,6 @@ def image_to_text(img_bytes: bytes) -> str:
     import numpy as np
 
     pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
-
     nparr = np.frombuffer(img_bytes, np.uint8)
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
