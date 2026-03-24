@@ -16,10 +16,10 @@ from PIL import Image
 import os
 
 import numpy as np
-
+import pytesseract
+import cv2
 def image_to_text(img_bytes: bytes) -> str:
-    import pytesseract
-    import cv2
+    
     import numpy as np
 
     pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
