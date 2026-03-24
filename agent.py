@@ -10,7 +10,7 @@ from typing import Any, Dict, TypedDict, List
 from langchain_groq import ChatGroq
 from langchain_core.messages import HumanMessage
 from langgraph.graph import StateGraph, END
-
+import streamlit as st
 import config
 from prompts import INVOICE_VISION_PROMPT, EMAIL_DRAFT_PROMPT
 
@@ -29,7 +29,7 @@ def _get_llm():
     return ChatGroq(
         model="openai/gpt-oss-120b",
         temperature=config.TEMPERATURE,
-        api_key=config.OPENAI_API_KEY,
+        api_key=st.secrets[OPENAI_API_KEY],
     )
 
 
