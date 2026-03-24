@@ -51,60 +51,6 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
-#######################################################################
-st.markdown("""
-<style>
-button[kind="secondary"][data-testid="baseButton-send_btn"] {
-    background-color: #28a745;
-    color: white;
-}
-
-button[kind="secondary"][data-testid="baseButton-regen_btn"] {
-    background-color: #007bff;
-    color: white;
-}
-
-button[kind="secondary"][data-testid="baseButton-cancel_btn"] {
-    background-color: #ff6b6b;
-    color: white;
-}
-
-button:hover {
-    opacity: 0.85;
-}
-</style>
-""", unsafe_allow_html=True)
-
-#######################################################################
-st.markdown("""
-<style>
-/* Send Email (first button) */
-div.stButton:nth-of-type(1) button {
-    background-color: #28a745;
-    color: white;
-    border-radius: 8px;
-}
-
-/* Re-generate (second button) */
-div.stButton:nth-of-type(2) button {
-    background-color: #007bff;
-    color: white;
-    border-radius: 8px;
-}
-
-/* Cancel (third button) */
-div.stButton:nth-of-type(3) button {
-    background-color: #ff6b6b;
-    color: white;
-    border-radius: 8px;
-}
-
-/* Hover effects */
-div.stButton button:hover {
-    opacity: 0.85;
-}
-</style>
-""", unsafe_allow_html=True)
 
 # ─── Sidebar — settings ──────────────────────────────────
 with st.sidebar:
