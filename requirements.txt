@@ -8,5 +8,5 @@ pydantic
 PyMuPDF
 Pillow
 opencv-python
-langchain-groq==0.1.3
+langchain-groq
 groq

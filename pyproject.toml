@@ -8,6 +8,7 @@ dependencies = [
     "dotenv>=0.9.9",
     "fastapi>=0.135.1",
     "langchain>=1.2.13",
+    "langchain-groq>=1.1.2",
     "opencv-python>=4.13.0.92",
     "pytesseract>=0.3.13",
     "python-dotenv>=1.2.2",
