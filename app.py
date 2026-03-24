@@ -12,11 +12,10 @@ import json
 import streamlit as st
 import os
 
-os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
 
 from agent import run_agent  # AFTER setting env ✅
 import config
-from agent import run_agent
 from file_utils import file_to_images_b64
 from email_sender import send_email
 
