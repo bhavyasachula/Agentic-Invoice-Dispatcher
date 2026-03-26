@@ -6,7 +6,7 @@ AI agent that reads invoices (PDF/images), extracts data using OCR, drafts profe
 
 * **Streamlit** — UI
 * **LangGraph** — Agent pipeline
-* **Groq (LLM)** — Text reasoning & email generation
+* **(LLM)** — Text reasoning & email generation
 * **Tesseract OCR** — Invoice text extraction
 * **SMTP** — Email delivery
 
@@ -22,15 +22,14 @@ Upload Invoice (PDF/Image)
   └─────┬──────┘
         │
         ▼
-  ┌────────────┐
-  │   Groq     │  ← Converts text → structured data
-  │    LLM     │  ← Extracts: ID, client, amount, items, due date
-  └─────┬──────┘
+  ┌────────────┐            
+  │    LLM     │ ← Converts text → structured data
+  └─────┬──────┘ ← Extracts: ID, client, amount, items, date
         │
         ▼
   ┌────────────┐
-  │  Draft     │  ← Generates subject + body
-  │  Email     │
+  │   Draft    │  ← Generates subject + body
+  │   Email    │
   └─────┬──────┘
         │
         ▼
@@ -51,7 +50,7 @@ streamlit run app.py
 ## Environment Variables
 
 ```
-GROQ_API_KEY=your_groq_api_key
+API_KEY=api_key_here
 
 SMTP_EMAIL=your_email@gmail.com
 SMTP_PASSWORD=your_app_password
